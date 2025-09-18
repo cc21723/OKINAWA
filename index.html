@@ -295,14 +295,20 @@
       }
 
       #backToTop {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
+        background-image: none;
+        /* 移除底圖 */
+        background-color: rgba(248, 123, 123, 0.5);
+        /* 可選顏色，或透明 */
+        font-size: 20px;
       }
 
-      #backToTop .text {
-        display: none;
+      #backToTop .text::before {
+        content: "⬆️ ";
+        /* 加上箭頭 */
       }
+
+      /* 換成箭頭圖標，文字也可隱藏 */
+      #backToTop .text { display: none; }
     }
 
     /* 手機板單欄調整 */
@@ -803,6 +809,7 @@
 
   <!-- TOP 回到最上面按鈕 -->
   <button id="backToTop">💖 <span class="text">TOP</span></button>
+  <!-- <button id="backToTop">TOP</button> -->
 
 
   <script>
