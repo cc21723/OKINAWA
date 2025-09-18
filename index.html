@@ -174,7 +174,8 @@
     .album .photos {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
+      justify-content: flex-start;
     }
 
     .album .photos a {
@@ -183,13 +184,14 @@
       align-items: center;
       text-decoration: none;
       color: #444;
-      width: 120px;
+      width: 160px;
       /* 固定寬度，看起來整齊 */
       font-size: 0.9rem;
     }
 
     .album .photos img {
-      width: 120px;
+      /* width: 120px; */
+      width: 100%;
       height: auto;
       aspect-ratio: 4 / 3;
       /* 保持比例 */
@@ -273,13 +275,12 @@
     /* 手機板放大 */
     @media (max-width: 768px) {
       .album .photos img {
-        width: 160px;
-        /* 放大一點 */
+        width: 220px;
         margin: 10px auto;
       }
 
       .album .photos a {
-        width: 160px;
+        width: 220px;
         /* 跟圖片同步 */
         font-size: 1rem;
       }
@@ -301,6 +302,33 @@
 
       #backToTop .text {
         display: none;
+      }
+    }
+
+    /* 手機板單欄調整 */
+    @media (max-width: 480px) {
+      .album .photos {
+        flex-direction: column;
+        /* 單欄 */
+        align-items: center;
+        /* 置中 */
+      }
+
+      .album .photos a {
+        display: flex;
+        /* 讓 a 包含的 img 可以置中 */
+        justify-content: center;
+        width: 100%;
+        /* 佔滿父容器寬度 */
+      }
+
+      .album .photos a img {
+        width: 150%;
+        /* 放大圖片 */
+        max-width: 100%;
+        /* 避免超出容器 */
+        margin-bottom: 15px;
+        /* 圖片間距 */
       }
     }
   </style>
