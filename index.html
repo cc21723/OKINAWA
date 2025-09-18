@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>沖繩五天四夜行程</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Patrick+Hand&display=swap');
+
+    body {
+      font-family: 'Patrick Hand', cursive, sans-serif;
+      background: #fffafc url('https://i.imgur.com/qCz5fTh.png') repeat;
+      margin: 0;
+      padding: 0;
+      color: #444;
+      font-size: 20px;
+    }
+
+    header {
+      background: #ffb6c1;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      border-bottom: 6px dashed #ff87a2;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+    }
+
+    header p a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline wavy;
+    }
+
+    /*導覽列*/
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .nav a {
+      background: #ff87a2;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav a:hover {
+      background: #ff6392;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .day-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 3px dotted #ffb6c1;
+      background: linear-gradient(180deg, #fffdfd, #fff7fa);
+      box-shadow: 5px 5px 0px #ffe3ec;
+      position: relative;
+    }
+
+    .day-card h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+      color: #ff6392;
+    }
+
+    .day-card h2::before {
+      content: "✦ ";
+      color: #ff87a2;
+    }
+
+    .day-card ul {
+      padding-left: 20px;
+      list-style: "✿ ";
+    }
+
+    .day-card ul li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .day-card ul li:hover {
+      background: #fff0f5;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .note {
+      display: block;
+      /* 換行，看起來像附註 */
+      font-size: 0.9em;
+      color: #666;
+      margin-left: 1em;
+    }
+
+    .note a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+
+    .note a:hover {
+      text-decoration: underline;
+    }
+
+    .sticker {
+      position: absolute;
+      top: -15px;
+      right: -10px;
+      font-size: 2rem;
+      transform: rotate(15deg);
+    }
+
+    /* 相簿區塊 */
+    .album {
+      margin-top: 15px;
+    }
+
+    .album h3 {
+      font-size: 1.2rem;
+      color: #ff87a2;
+      margin-bottom: 12px;
+    }
+
+    .album .photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .album .photos a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #444;
+      width: 120px;
+      /* 固定寬度，看起來整齊 */
+      font-size: 0.9rem;
+    }
+
+    .album .photos img {
+      width: 120px;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      /* 保持比例 */
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #ffb6c1;
+      margin-bottom: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .album .photos img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .album .photos a:hover {
+      color: #ff6392;
+    }
+
+    /* 伴手禮區 */
+    .souvenirs ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .souvenirs li {
+      text-align: center;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      transition: transform 0.2s ease;
+    }
+
+    .souvenirs li:hover {
+      transform: translateY(-5px);
+    }
+
+    .souvenirs img {
+      width: 100%;
+      height: 180px;
+      /* 控制圖片大小 */
+      object-fit: cover;
+      /* 保持比例裁切 */
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .souvenirs span {
+      display: block;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #ff87a2;
+      color: white;
+      margin-top: 30px;
+      font-size: 0.9rem;
+      border-top: 6px dashed #ffb6c1;
+    }
+
+    /* 桌機版預設 */
+    .album .photos img {
+      width: 120px;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #ffb6c1;
+      margin-bottom: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    /* 手機板放大 */
+    @media (max-width: 768px) {
+      .album .photos img {
+        width: 160px;
+        /* 放大一點 */
+        margin: 10px auto;
+      }
+
+      .album .photos a {
+        width: 160px;
+        /* 跟圖片同步 */
+        font-size: 1rem;
+      }
+
+      .album .photos img:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+
+      .album .photos a:hover {
+        color: #ff6392;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>🧳 沖繩五天四夜 🌸</h1>
+    <p><a href="https://chictrip-share.app.link/VhJ8zGKWIWb" target="_blank">👉 點我看完整行程</a></p>
+  </header>
+  <nav class="nav">
+    <a href="#day1">Day 1</a>
+    <a href="#day2">Day 2</a>
+    <a href="#day3">Day 3</a>
+    <a href="#day4">Day 4</a>
+    <a href="#day5">Day 5</a>
+  </nav>
+  <div class="container">
+
+    <!-- Day 1 -->
+    <div class="day-card" id="day1">
+      <div class="sticker">🌺</div>
+      <h2>Day 1 ✈️ 抵達沖繩</h2>
+      <ul>
+        <li>
+          抵達那霸機場
+          <span class="note">準備搭單軌鐵路前往市區</span>
+        </li>
+        <li>
+          乘坐單軌鐵路
+          <span class="note">￥300 從那霸空港駅 → 牧志駅</span>
+        </li>
+        <li>
+          入住飯店
+          <span class="note"><a href="https://tw.hotel-okinawa.com/" target="_blank">三麗鷗飯店</a></span>
+        </li>
+        <li>
+          國際通逛街 & 晚餐
+          <span class="note">
+            <a href="https://maps.app.goo.gl/kvq2iQKvGLfqWivD6" target="_blank">豬肉蛋飯糰</a> ・
+            <a href="https://maps.app.goo.gl/Ns2GYUDCn3vFCcdJ9" target="_blank">Blue Seal</a>
+          </span>
+        </li>
+      </ul>
+      <div class="album">
+        <h3>📸 小相簿 🗺️</h3>
+        <div class="photos">
+          <a href="https://maps.app.goo.gl/QHYuTwTenV9Yb9eH6" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNJEsrld00XYVmRIQb7ecsH9YUaLADN564VBwf4=w408-h306-k-no"
+              alt="三麗鷗飯店">
+            三麗鷗飯店
+          </a>
+          <a href="https://tw.hotel-okinawa.com/access" target="_blank">
+            <img src="./images/1.png" alt="機場至飯店路線">
+            機場至飯店路線
+          </a>
+          <a href="https://maps.app.goo.gl/bn4ctNhbvmtjiAq39" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4np12vK8E113sE4MPMPDCMZJiGu_ycYDXzeR05aXg9ImXv4xl9W77-Fq1RC9kWQAgZK6fmBNCi6GiQHesMcWxylQXSCg7lCrjK1KFJY9NGoGIy24VQx2Cp8iCqXUOL3OYtucE-bN=w408-h271-k-no"
+              alt="國際通">
+            國際通
+          </a>
+          <a href="https://maps.app.goo.gl/kvq2iQKvGLfqWivD6" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP_epfMOT40n5GdEcJND8Tu9f5IEQ5OFCu-2uqA=w408-h272-k-no"
+              alt="Pork Tamago Onigiri Makishi Market">
+            豬肉蛋飯糰
+          </a>
+          <a href="https://maps.app.goo.gl/Ns2GYUDCn3vFCcdJ9" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipMfQ9hv0mn-xIpwquyCscGg-PPMrXUtl56OR3pW=w408-h252-k-no"
+              alt="Blue Seal">
+            Blue Seal 國際通店
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card" id="day2">
+      <div class="sticker">🍖</div>
+      <h2>Day 2 南部購物</h2>
+      <ul>
+        <li>
+          那霸市第一牧志公設市場
+          <span class="note">早午餐 ・ 看時間考慮先退房行李寄放</span>
+        </li>
+        <li>
+          三麗鷗飯店
+          <span class="note">回飯店拿行李 搭單軌去機場</span>
+        </li>
+        <li>
+          那霸機場
+          <span class="note">等OTS接駁車至臨空豐崎營業所</span>
+        </li>
+        <li>
+          沖繩 ASHIBINAA Outlet
+          <span class="note">買小b</span>
+        </li>
+        <li>
+          iias 沖繩豐崎
+          <span class="note">tete by okinawa 透明御守 ・ DMM Kariyushi 水族館 ・ 貓咪咖啡廳「Cat Café MOFF」</span>
+        </li>
+        <li>
+          OTS臨空豐崎營業所
+          <span class="note">17:30 回到租車地點</span>
+        </li>
+        <li>
+          入住 Lalamare 古宇利
+          <span class="note">考慮晚餐 Nishikiya ・ agoda下訂，可直接停車不收費</span>
+        </li>
+      </ul>
+      <div class="album">
+        <h3>📸 小相簿 🗺️</h3>
+        <div class="photos">
+          <a href="https://maps.app.goo.gl/Ntgs8mq5XtNUjX7A6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqNOjmPEpowjsTjN3JOwMSRFe8aB1BP9ZTZYVtntMQF7rrhwEvdbtA3lNuK5FEu6V8_alHAbJAYndXuTblacBDRn3XM4ynvHNcOhAmiKQHye1feWxF62ZgtMXXwFf_A1NDXVzzNN4_FzJPQ=w408-h544-k-no"
+              alt="那霸市第一牧志公設市場">
+            那霸市第一牧志公設市場
+          </a>
+          <a href="https://maps.app.goo.gl/BpwMM5HZVSvJeKon9" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noP0ERsLEUDkKsyK_C9NyXO5oiqVsABzgunx6PBHf3iCxgnOLpal6Y3awKQnLw5k_RPUkOZE7-pt3Zrd092Du2dlxrFekzzWiaR_-GSiYD87QkiCAWuY2AwvonwxjnFbXD94cIjMmATeTI=w408-h306-k-no"
+              alt="沖繩 ASHIBINAA Outlet">
+            沖繩 ASHIBINAA Outlet
+          </a>
+          <a href="https://maps.app.goo.gl/1B1gm46XVBy25ToE7" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrC2OgIVof1ctILSlhjGilAMRGWRgWueoQmXgJt_FpyLAaDM7ERRqGy1mwVF1tkbJbd5ylYCVZgHwKvisnXWcXKaqH3BVXoo5zG2VPdx2Goibz0NcNH1a0QeReRqdZn73zMI4QX=w408-h306-k-no"
+              alt="iias 沖繩豐崎">
+            iias 沖繩豐崎
+          </a>
+          <a href="https://maps.app.goo.gl/5gn2RoWYPHzsYpj78" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP340uWkdr6wKCt7e4PQVCVqOktd4OCDN9qG1QI=w408-h408-k-no"
+              alt="OTS臨空豐崎營業所">
+            OTS臨空豐崎營業所
+          </a>
+          <a href="https://maps.app.goo.gl/K5arEDKbUHSc5TK57" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNlzQVUZZfvnHPwMbDbjDTF6zgeTD9a16BDBLml=w408-h306-k-no"
+              alt="Lalamare 古宇利">
+            Lalamare 古宇利
+          </a>
+          <a href="https://maps.app.goo.gl/rmgXueyhtBCfSSpB6" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP7wiZZFEQWxTi3bjDzx9LLVn77mizqut5Vw3d5=w408-h306-k-no"
+              alt="Nishikiya">
+            Nishikiya
+          </a>
+          <a href="https://maps.app.goo.gl/yCRYaMMZcpYz1WAC8" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipO8RgRpfNyrWaNeo7gaHn9phL5hcE8wx_wMIIJl=w408-h272-k-no"
+              alt="L LOTA餐廳">
+            L LOTA餐廳
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card" id="day3">
+      <div class="sticker">🐠</div>
+      <h2>Day 3 🌊 北部海景 & 美麗海水族館</h2>
+      <ul>
+        <li>
+          古宇利海洋塔
+          <span class="note">KLOOK三合一套票</span>
+        </li>
+        <li>
+          ミキタチノ洞窟
+          <span class="note">30-1 Kouri, Nakijin, Kunigami District, Okinawa 905-0406日本</span>
+        </li>
+        <li>
+          古宇利蝦蝦飯
+          <span class="note">星期三、11:00–16:00</span>
+        </li>
+        <li>
+          SEASIDE VILLAGE SACRO
+          <span class="note">享受絕美景色的咖啡廳</span>
+        </li>
+        <li>
+          沖繩美麗海水族館
+          <span class="note">KLOOK三合一套票 飲料</span>
+        </li>
+        <li>
+          21世紀之森海灘
+          <span class="note">時間不夠可PASS</span>
+        </li>
+        <li>
+          A&W Nago
+          <span class="note">會餓就去吃</span>
+        </li>
+        <li>
+          恩納海濱公園Nabee海灘
+          <span class="note">時間不夠可PASS</span>
+        </li>
+        <li>
+          萬座毛
+          <span class="note">拍照買小東西 時間不夠可PASS</span>
+        </li>
+        <li>
+          沖繩北谷柔婕閣酒店
+          <span class="note">agoda下訂 ・ 停車費一晚￥550，先來後到制</span>
+        </li>
+        <li>
+          美國村
+          <span class="note">ＲＡＮＣＨ 服飾店 有三麗鷗沖繩限定版衣服 ・ 迴轉壽司市場 美浜店</span>
+        </li>
+      </ul>
+      <div class="album">
+        <h3>📸 小相簿 🗺️</h3>
+        <div class="photos">
+          <a href="https://maps.app.goo.gl/ggPcaKaPbaTVQFbY7" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP8jV2LtRj7rtY1EZWkkX2lEp_u3LIhP-E_fAAM=w427-h240-k-no"
+              alt="古宇利海洋塔">
+            古宇利海洋塔
+          </a>
+          <a href="https://maps.app.goo.gl/SrNBQsUcBwXQySKBA" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqPza--ATy8v_FL172QXlE7grncumGkielPLTUCkDcEJYACTNy91cKAiMv8m4KvLuUXt5WJyL25CHaEtDoHNcZVbHWreXHXCTfL3IpmIyIeuAMxDNx6w6MOoSs-2y6PfO35jxjx=w408-h306-k-no"
+              alt="ミキタチノ洞窟">
+            ミキタチノ洞窟
+          </a>
+          <a href="https://maps.app.goo.gl/pcgayMFSjJ6na57u5" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipPuFr6aZkL0FkFs4ZErMFNKNC_EzVLufo7DFhXu=w408-h408-k-no"
+              alt="古宇利蝦蝦飯">
+            古宇利蝦蝦飯
+          </a>
+          <a href="https://maps.app.goo.gl/fQTgVrjkboTQcMbu8" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrpUqaEqVrQa0kKgGVXQGbtCPiULF-dzXEjR8tTFv_scyJXCZiT3fU2xoENAH886M0QaLfoxZ8wpo-oOYOf4WdfDXWHwAXYRI-UIx7zhm2f_RPBRo4mDO6qD-s8SWzh1NCU26gH=w408-h306-k-no"
+              alt="SEASIDE VILLAGE SACRO">
+            SEASIDE VILLAGE SACRO
+          </a>
+          <a href="https://maps.app.goo.gl/R1Jy5TgdyVhR54H96" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr1m1izrqd3eb6RkEhojxX5nqStCIEfp24jfiiW2eEUUwSB6n_VojjA2U6-SHD8D73XjUHoXLOyq4l06qS6da6QrAqXJrq5pxz2wnWxyrOMkRDkkjjyjdHRN9-DnEgLfx4gsY853JigazU8=w408-h306-k-no"
+              alt="沖繩美麗海水族館">
+            沖繩美麗海水族館
+          </a>
+          <a href="https://maps.app.goo.gl/4pQqJ4EfeeEUs6WZ7" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqqmF76frB5lw45QVkpuP7VjFhYBm-p2CHfrVzCw0-Let_jew2XIoxSwKB9l6GHlFeI7V8NsR56lKvi1BiTUmDHp6A4IX_15pk85J4Em6Gdsv6pg_XTcZ08aqyOIni11K6zgIZWAQ=w408-h306-k-no"
+              alt="21世紀之森海灘">
+            21世紀之森海灘
+          </a>
+          <a href="https://maps.app.goo.gl/U8YuuDTT2t784WyH9" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nroUqRz7dMkNSzUVSiBm-fR3wvSGf6xU4UFRyNR37EUPO9VHBu4JUaN8TPbe58IugR8M97gKOl4HOxLRUew6WG1rG5VtppLBgVTDRSZNnCr8Ix0TezeXkNFFg5dGur_FANZt1JaERP95OX2=w408-h306-k-no"
+              alt="A&W Nago">
+            A&W Nago
+          </a>
+          <a href="https://maps.app.goo.gl/U8YuuDTT2t784WyH9" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNYVxBiGKjpGFVuiUo0v97dlIu-Jf4mo5RaBkN9=w408-h544-k-no"
+              alt="A&W Nago">
+            恩納海濱公園Nabee海灘
+          </a>
+          <a href="https://maps.app.goo.gl/M2HxUj45Uw2DNpyx6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqeJXabYse_noV4mru8HgGOnwRsWRL1jwr8Fk0fADzCBCYilpu4apw35oYbT_RuWG6QQO5Mc7_J39DYzfPSOXRQQYPaaogkwOa90_czOvF75loruga-nKQ6gfHqs1djVg1xqdBNiOL_TfzR=w408-h306-k-no"
+              alt="萬座毛">
+            萬座毛
+          </a>
+          <a href="https://maps.app.goo.gl/9tfECpG2WRUkJiaA7" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipOJQw21MuIazwWoleCzzLLtq-U5zk9If9HWoYuQ=w408-h272-k-no"
+              alt="沖繩北谷柔婕閣酒店與旅舍">
+            沖繩北谷柔婕閣酒店與旅舍
+          </a>
+          <a href="https://maps.app.goo.gl/pkpGp74usjuspiSg6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqOecq4PRtmIhVzGygswQnOnN_AUhJA62J0uP1VbROENx76_SKMLDLWiWK9CDoF7ZIqFzH8e_bSzIPvjJherAV63cpX8HnQ05h3XINuyvi5IXsckUiCR9e9lbPKPgmlr1tG5O1_=w408-h306-k-no"
+              alt="美國村">
+            美國村
+          </a>
+          <a href="https://maps.app.goo.gl/3AS76jmwjwZ2N9JG6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nr7B46Q6lv_sLiWhqnIgUPuOQuV5qn5_2B_6lTDKCIaIiwDkDniPzp7-zrOGvY5iz-Wvu_O8i0dIMkcz3jxxArgltuBO21SXezA__iL-9_ASDTy1EGKEJIIul1xj0Fjj5WSWm1m=w408-h544-k-no"
+              alt="ＲＡＮＣＨ">
+            ＲＡＮＣＨ
+          </a>
+          <a href="https://maps.app.goo.gl/U7HjZ1aAG5KGd1RH7" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4npRPj6a6_YSKnLYmBS4ub_7BVvs3-eZYk5Aj5oVg37mhCRdNW5bbdsCFPCQBuj_jAM_v1ruZah8B9GOWGIMwqfUmLE57vlp0AXNIuhFHp0Y10Y9itxoXVh7Iuu8115LZIG9of8RiGQEEQwE=w408-h483-k-no"
+              alt="迴轉壽司市場 美浜店">
+            迴轉壽司市場 美浜店
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="day-card" id="day4">
+      <div class="sticker">⛩️</div>
+      <h2>Day 4 吃一整天</h2>
+      <ul>
+        <li>
+          泊港漁市場
+          <span class="note">（有）大国海産</span>
+        </li>
+        <li>
+          波上宮
+          <span class="note">書包御守 ・ 沙灘</span>
+        </li>
+        <li>
+          沖繩 ASHIBINAA Outlet
+          <span class="note">買小b</span>
+        </li>
+        <li>
+          iias 沖繩豐崎
+          <span class="note">tete by okinawa 透明御守 ・ DMM Kariyushi 水族館 ・ 貓咪咖啡廳「Cat Café MOFF」</span>
+        </li>
+        <li>
+          OTS臨空豐崎營業所
+          <span class="note">18:30 之前還車</span>
+        </li>
+        <li>
+          入住三麗鷗飯店
+          <span class="note">搭OTS接駁車回機場，再搭單軌去飯店 ￥300 從那霸空港駅 → 牧志駅</span>
+        </li>
+        <li>
+          國際通吃晚餐
+          <span class="note">Buchi Kumojiten ・ 琉球之牛 (燒肉) ・ 堂吉軻德 ・ 伴手禮</span>
+        </li>
+      </ul>
+      <div class="album">
+        <h3>📸 小相簿 🗺️</h3>
+        <div class="photos">
+          <a href="https://maps.app.goo.gl/s2uKNdQREFJo7bVg6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nouuip-x9eEJrqFtrPOc889DHMkcviRvp87l0yYxbtDS5pkzjqnLPlyc3z_Ias8mDgY07Hc-1lWU-4g7GgUxxPEblkjhvEHl-zcXv2suGyNzog5ebNqFrahEwkKwHhhgZS2m3YGxP11RzmY=w426-h240-k-no"
+              alt="泊港漁市場">
+            泊港漁市場
+          </a>
+          <a href="https://maps.app.goo.gl/jf1kzG1uKbKF4yjs9" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nryJCTfsp4wJL9b7KHlCpwSEKZopO12jh2gsp8LedbnA8vox0QXZEMwfRNZEfBx582jkUM60vijFX33XQCtV3KSM8_5qnUh6Nr3QnWClCNj8itGYBWCnZzpqEQCDfeXIwTNO3bkhnFL3XP5=w426-h240-k-no"
+              alt="（有）大国海産">
+            （有）大国海産
+          </a>
+          <a href="https://maps.app.goo.gl/ZpVyDK3nSah2A3HaA" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nqtIA5eNosEn4aQiPa3WFl47q_bt5Mqs27ZRjrx2fMrEa5IQIMb-NZw870z6T8eG9RJgiHw3kh8yuVjAAsjnACuQ1HNdfpmqF1pV6abJ97UY_eNMuxqfxYpTUPStubd0sulDiHyXw=w408-h306-k-no"
+              alt="波上宮">
+            波上宮
+          </a>
+          <a href="https://maps.app.goo.gl/BpwMM5HZVSvJeKon9" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noP0ERsLEUDkKsyK_C9NyXO5oiqVsABzgunx6PBHf3iCxgnOLpal6Y3awKQnLw5k_RPUkOZE7-pt3Zrd092Du2dlxrFekzzWiaR_-GSiYD87QkiCAWuY2AwvonwxjnFbXD94cIjMmATeTI=w408-h306-k-no"
+              alt="沖繩 ASHIBINAA Outlet">
+            沖繩 ASHIBINAA Outlet
+          </a>
+          <a href="https://maps.app.goo.gl/1B1gm46XVBy25ToE7" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrC2OgIVof1ctILSlhjGilAMRGWRgWueoQmXgJt_FpyLAaDM7ERRqGy1mwVF1tkbJbd5ylYCVZgHwKvisnXWcXKaqH3BVXoo5zG2VPdx2Goibz0NcNH1a0QeReRqdZn73zMI4QX=w408-h306-k-no"
+              alt="iias 沖繩豐崎">
+            iias 沖繩豐崎
+          </a>
+          <a href="https://maps.app.goo.gl/5gn2RoWYPHzsYpj78" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipP340uWkdr6wKCt7e4PQVCVqOktd4OCDN9qG1QI=w408-h408-k-no"
+              alt="OTS臨空豐崎營業所">
+            OTS臨空豐崎營業所
+          </a>
+          <a href="https://maps.app.goo.gl/QHYuTwTenV9Yb9eH6" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipNJEsrld00XYVmRIQb7ecsH9YUaLADN564VBwf4=w408-h306-k-no"
+              alt="三麗鷗飯店">
+            三麗鷗飯店
+          </a>
+          <a href="https://maps.app.goo.gl/jb4ydUfQespbtteY6" target="_blank">
+            <img src="https://lh3.googleusercontent.com/p/AF1QipPRIB8zoBMQp7Jwn-VMu8lQdrben7mXKMuJXSIl=w408-h306-k-no"
+              alt="琉球之牛">
+            琉球之牛 (燒肉)
+          </a>
+          <a href="https://maps.app.goo.gl/kFAm7Eu6xGDN85c76" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noN-hmRc4zpOGHQSORafGkqOqFR-ILFOaeKYYRa6KWU7hdEzoRhKk3XKwCQkJMK5vL7WDg0rvh9s2cv-X6sGuk5OiD6WNnjQHBLZfl-iB8d6rFs8E33snY5ggI6qtRx30q-RBKuesXAlk0j=w408-h306-k-no"
+              alt="Buchi Kumojiten">
+            Buchi Kumojiten
+          </a>
+          <a href="https://maps.app.goo.gl/LV9976JX2Svmm81c6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nok0rzZye6vutMiwm4FfUvetaudT9jLPbv8qSKsPgKTtRuQ7IxwV6C4pDrB64VzG_BBpZpBG-hl5F3NY2YE-_sq7bQvLhPF1V0J6co4Cl4BkyMgkxCb0p4TGOF3maL_Y4pHkZyQtKXi2K4e=w408-h544-k-no"
+              alt="唐吉軻德">
+            唐吉軻德
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="day-card" id="day5">
+      <div class="sticker">🛫</div>
+      <h2>Day 5 回程</h2>
+      <ul>
+        <li>
+          國際通買伴手禮
+          <span class="note"></span>
+        </li>
+        <li>
+          11點退房
+          <span class="note">搭單軌回機場 ￥300 從牧志駅 → 那霸空港駅</span>
+        </li>
+        <li>
+          那霸機場
+          <span class="note">【3F】報到櫃檯、觀景台、餐廳 <br>【4F】豬肉蛋飯糰 <br>【2F】DFS那霸航空免稅店LANCÔME ・ 鹽屋雪鹽霜淇淋</span>
+        </li>
+        <li>
+          搭機返台
+          <span class="note">航班時間13:35</span>
+        </li>
+      </ul>
+      <div class="album">
+        <h3>📸 小相簿 🗺️</h3>
+        <div class="photos">
+          <a href="https://maps.app.goo.gl/LV9976JX2Svmm81c6" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nok0rzZye6vutMiwm4FfUvetaudT9jLPbv8qSKsPgKTtRuQ7IxwV6C4pDrB64VzG_BBpZpBG-hl5F3NY2YE-_sq7bQvLhPF1V0J6co4Cl4BkyMgkxCb0p4TGOF3maL_Y4pHkZyQtKXi2K4e=w408-h544-k-no"
+              alt="唐吉軻德">
+            唐吉軻德
+          </a>
+          <a href="https://maps.app.goo.gl/e5rewdJGp9vALVbUA" target="_blank">
+            <img
+              src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4noxpq8hUrAMXFmWd6nIEQBQ8U_YqadHlnqKUD1uRrIkJdol35xC0bsSNrvVPUdEt3J_XUo_h_EeFuPe2Br1382pR2MGV5IuFQa7Tau9peNci-sx32CAWyA3UvcDXcLWg2lkOQJs-A=w408-h306-k-no"
+              alt="那霸機場">
+            那霸機場
+          </a>
+        </div>
+      </div>
+      <div class="souvenirs">
+        <h3>那霸機場推薦沖繩伴手禮 🎁</h3>
+        <ul>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08j-1000x581-1748956563.webp" alt="">
+            <span>ROYCE' ISHIGAKIJIMA 巧克力洋芋片（Potatochip Chocolate 石垣島限定）</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08i-1000x581-1748956564.webp" alt="">
+            <span>35 COFFEE（Three Five COFFEE）：黑色款「ISLAND SPECIAL」、紅色款「HIBISCUS MANGO FLAVOR」</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08h-1000x581-1748956587.webp" alt="">
+            <span>琉球泡盛組合禮盒：包含泡盛品牌首里天、瑞泉、萬座、菊之露、玉那霸川等在地品牌</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08g-1000x582-1748956588.webp" alt="">
+            <span>御菓子御殿 元祖紅芋塔</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08f-1000x582-1748956639.webp" alt="">
+            <span>Calbee 沖繩限定鹽味洋芋片</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08e-1000x581-1748956640.webp" alt="">
+            <span>沖繩啤酒 Orion 系列周邊商品：如啤酒罐造型杯、T恤、環保袋、文具、毛巾等</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08d-1000x581-1748956660.webp" alt="">
+            <span>雪鹽金楚糕：宮古島雪鹽風味、原味與牛奶口味</span>
+          </li>
+          <li>
+            <img src="https://d1grca2t3zpuug.cloudfront.net/2025/06/nahashop08c-1000x581-1748956661.webp" alt="">
+            <span>沖繩麵禮盒組（那霸機場限定，3食入）</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+    <p>© 2025 我的沖繩旅行手帳</p>
+  </footer>
+</body>
+
+</html>
